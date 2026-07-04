@@ -1,0 +1,282 @@
+/**
+ * T-Platform Main Styles
+ * Foxway-inspired B2B design
+ *
+ * @package T_Platform_WooCommerce_Theme
+ * @since 0.1.0
+ */
+
+/* CSS Variables */
+:root {
+    /* Primary Colors */
+    --t-platform-primary: #2c5f2d;
+    --t-platform-primary-dark: #1e4620;
+    --t-platform-primary-light: #4a8b4c;
+    
+    /* Secondary Colors */
+    --t-platform-secondary: #0066cc;
+    --t-platform-secondary-dark: #004d99;
+    --t-platform-secondary-light: #3385d6;
+    
+    /* Accent Colors */
+    --t-platform-accent: #ff9900;
+    --t-platform-accent-dark: #cc7a00;
+    
+    /* Neutral Colors */
+    --t-platform-text: #333333;
+    --t-platform-text-light: #666666;
+    --t-platform-text-muted: #999999;
+    --t-platform-border: #e0e0e0;
+    --t-platform-background: #f5f5f5;
+    --t-platform-white: #ffffff;
+    
+    /* Quality Grade Colors */
+    --t-platform-grade-teqcycle: #2c5f2d;
+    --t-platform-grade-hp: #0096d6;
+    --t-platform-grade-new: #ff9900;
+    --t-platform-grade-refurbished-a: #4a8b4c;
+    --t-platform-grade-refurbished-b: #999999;
+    
+    /* Spacing */
+    --t-platform-spacing-xs: 0.25rem;
+    --t-platform-spacing-sm: 0.5rem;
+    --t-platform-spacing-md: 1rem;
+    --t-platform-spacing-lg: 1.5rem;
+    --t-platform-spacing-xl: 2rem;
+    --t-platform-spacing-xxl: 3rem;
+    
+    /* Typography */
+    --t-platform-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    --t-platform-font-size-base: 16px;
+    --t-platform-font-size-sm: 14px;
+    --t-platform-font-size-lg: 18px;
+    --t-platform-font-size-xl: 24px;
+    --t-platform-font-size-xxl: 32px;
+    
+    /* Border Radius */
+    --t-platform-radius-sm: 4px;
+    --t-platform-radius-md: 8px;
+    --t-platform-radius-lg: 12px;
+    
+    /* Shadows */
+    --t-platform-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --t-platform-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --t-platform-shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.15);
+    
+    /* Transitions */
+    --t-platform-transition: all 0.3s ease;
+}
+
+/* Reset & Base */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--t-platform-font-family);
+    font-size: var(--t-platform-font-size-base);
+    line-height: 1.6;
+    color: var(--t-platform-text);
+    background-color: var(--t-platform-white);
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+.t-platform-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--t-platform-spacing-md);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.3;
+    margin-top: 0;
+    color: var(--t-platform-text);
+}
+
+h1 {
+    font-size: var(--t-platform-font-size-xxl);
+    margin-bottom: var(--t-platform-spacing-lg);
+}
+
+h2 {
+    font-size: var(--t-platform-font-size-xl);
+    margin-bottom: var(--t-platform-spacing-md);
+}
+
+h3 {
+    font-size: var(--t-platform-font-size-lg);
+    margin-bottom: var(--t-platform-spacing-sm);
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: var(--t-platform-spacing-md);
+}
+
+a {
+    color: var(--t-platform-secondary);
+    text-decoration: none;
+    transition: var(--t-platform-transition);
+}
+
+a:hover {
+    color: var(--t-platform-secondary-dark);
+    text-decoration: underline;
+}
+
+/* Buttons */
+.t-platform-btn {
+    display: inline-block;
+    padding: var(--t-platform-spacing-sm) var(--t-platform-spacing-lg);
+    font-size: var(--t-platform-font-size-base);
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: var(--t-platform-radius-sm);
+    cursor: pointer;
+    transition: var(--t-platform-transition);
+}
+
+.t-platform-btn-primary {
+    background-color: var(--t-platform-primary);
+    color: var(--t-platform-white);
+}
+
+.t-platform-btn-primary:hover {
+    background-color: var(--t-platform-primary-dark);
+    color: var(--t-platform-white);
+    text-decoration: none;
+}
+
+.t-platform-btn-secondary {
+    background-color: var(--t-platform-secondary);
+    color: var(--t-platform-white);
+}
+
+.t-platform-btn-secondary:hover {
+    background-color: var(--t-platform-secondary-dark);
+    color: var(--t-platform-white);
+    text-decoration: none;
+}
+
+/* Header */
+.t-platform-header {
+    background-color: var(--t-platform-white);
+    border-bottom: 1px solid var(--t-platform-border);
+    padding: var(--t-platform-spacing-md) 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--t-platform-shadow-sm);
+}
+
+.t-platform-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--t-platform-spacing-lg);
+}
+
+.t-platform-logo img {
+    max-height: 60px;
+    width: auto;
+}
+
+.t-platform-search {
+    flex: 1;
+    max-width: 600px;
+}
+
+.t-platform-search-form {
+    display: flex;
+    gap: var(--t-platform-spacing-sm);
+}
+
+.t-platform-search-input {
+    flex: 1;
+    padding: var(--t-platform-spacing-sm) var(--t-platform-spacing-md);
+    border: 1px solid var(--t-platform-border);
+    border-radius: var(--t-platform-radius-sm);
+    font-size: var(--t-platform-font-size-base);
+}
+
+.t-platform-search-input:focus {
+    outline: none;
+    border-color: var(--t-platform-primary);
+}
+
+.t-platform-cart-icon {
+    position: relative;
+    font-size: var(--t-platform-font-size-xl);
+    color: var(--t-platform-text);
+}
+
+.t-platform-cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: var(--t-platform-accent);
+    color: var(--t-platform-white);
+    font-size: var(--t-platform-font-size-sm);
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 50%;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* Footer */
+.t-platform-footer {
+    background-color: var(--t-platform-text);
+    color: var(--t-platform-white);
+    padding: var(--t-platform-spacing-xxl) 0 var(--t-platform-spacing-lg);
+    margin-top: var(--t-platform-spacing-xxl);
+}
+
+.t-platform-footer-widgets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--t-platform-spacing-xl);
+    margin-bottom: var(--t-platform-spacing-xl);
+}
+
+.t-platform-footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: var(--t-platform-spacing-lg);
+    text-align: center;
+    color: var(--t-platform-text-muted);
+}
+
+/* Utility Classes */
+.t-platform-text-center {
+    text-align: center;
+}
+
+.t-platform-text-left {
+    text-align: left;
+}
+
+.t-platform-text-right {
+    text-align: right;
+}
+
+.t-platform-mt-0 { margin-top: 0; }
+.t-platform-mt-sm { margin-top: var(--t-platform-spacing-sm); }
+.t-platform-mt-md { margin-top: var(--t-platform-spacing-md); }
+.t-platform-mt-lg { margin-top: var(--t-platform-spacing-lg); }
+.t-platform-mt-xl { margin-top: var(--t-platform-spacing-xl); }
+
+.t-platform-mb-0 { margin-bottom: 0; }
+.t-platform-mb-sm { margin-bottom: var(--t-platform-spacing-sm); }
+.t-platform-mb-md { margin-bottom: var(--t-platform-spacing-md); }
+.t-platform-mb-lg { margin-bottom: var(--t-platform-spacing-lg); }
+.t-platform-mb-xl { margin-bottom: var(--t-platform-spacing-xl); }
+
+.t-platform-hidden {
+    display: none !important;
+}
