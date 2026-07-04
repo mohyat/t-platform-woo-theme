@@ -2,6 +2,46 @@
 
 Vse pomembne spremembe v T-Platform WooCommerce Theme bodo dokumentirane v tej datoteki.
 
+## [0.2.0] - 2026-07-04
+
+### Dodano
+- Admin menu z zavihki (General, Homepage)
+- General Settings stran z nastavitvami:
+  - Primary Color picker
+  - Secondary Color picker
+  - Accent Color picker
+  - Logo upload z WordPress Media Library
+- Homepage Settings (placeholder za prihodnje verzije)
+- Admin CSS datoteka (t-platform-admin.css)
+- Admin JavaScript datoteka (t-platform-admin.js)
+- WordPress Color Picker integracija
+- WordPress Media Uploader integracija
+- Shranjevanje nastavitev v WordPress options
+- Success message po shranjevanju
+- WooCommerce HPOS (High-Performance Order Storage) kompatibilnost
+- WooCommerce Product Block Editor kompatibilnost
+
+### Tehnicni detajli
+- Verzija posodobljena: 0.1.0 → 0.2.0
+- Dodane metode v class-t-platform-setup.php:
+  - admin_enqueue_scripts() - posodobljena z WordPress odvisnostmi
+  - render_settings_page() - posodobljena z dejanskimi nastavitvami
+  - save_settings() - nova metoda za shranjevanje
+  - declare_woocommerce_compatibility() - nova metoda za HPOS
+- Hook dodan: before_woocommerce_init
+
+### Testirano
+- ✅ Admin menu viden v WordPress admin-u
+- ✅ Settings stran z zavihki deluje
+- ✅ Color picker-ji delujejo
+- ✅ Logo upload deluje
+- ✅ Shranjevanje nastavitev deluje
+- ✅ WooCommerce compatibility opozorilo odpravljeno
+- ✅ PHP syntax preverjena
+- ✅ WordPress error log čist
+
+---
+
 ## [0.1.0] - 2026-01-XX
 
 ### Dodano

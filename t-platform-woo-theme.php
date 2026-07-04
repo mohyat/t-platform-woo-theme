@@ -3,7 +3,7 @@
  * Plugin Name: T-Platform WooCommerce Theme
  * Plugin URI: https://github.com/mohyat/t-platform-woo-theme
  * Description: Profesionalna WooCommerce tema po vzoru Foxway.dk - B2B dizajn za tehnicne izdelke
- * Version: 0.1.0
+ * Version: 0.2.0
  * Author: T-Platform
  * Author URI: https://github.com/mohyat
  * License: GPL v2 or later
@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Definiraj konstante plugin-a
-define('T_PLATFORM_VERSION', '0.1.0');
+define('T_PLATFORM_VERSION', '0.2.0');
 define('T_PLATFORM_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('T_PLATFORM_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('T_PLATFORM_PLUGIN_BASENAME', plugin_basename(__FILE__));

@@ -56,6 +56,8 @@ class T_Platform_Setup {
         add_action('init', array($this, 'register_custom_product_fields'));
         
         // Admin menu
+        // WooCommerce HPOS compatibility
+        add_action('before_woocommerce_init', array($this, 'declare_woocommerce_compatibility'));
         add_action('admin_menu', array($this, 'add_admin_menu'));
     }
     
@@ -148,18 +150,26 @@ class T_Platform_Setup {
         if (strpos($hook, 't-platform') === false) {
             return;
         }
-        
+
+        // WordPress color picker
+        wp_enqueue_style('wp-color-picker');
+
+        // Admin CSS
         wp_enqueue_style(
             't-platform-admin',
             T_PLATFORM_PLUGIN_URL . 'assets/css/t-platform-admin.css',
-            array(),
+            array('wp-color-picker'),
             T_PLATFORM_VERSION
         );
-        
+
+        // WordPress media uploader
+        wp_enqueue_media();
+
+        // Admin JS
         wp_enqueue_script(
             't-platform-admin',
             T_PLATFORM_PLUGIN_URL . 'assets/js/t-platform-admin.js',
-            array('jquery'),
+            array('jquery', 'wp-color-picker'),
             T_PLATFORM_VERSION,
             true
         );
@@ -337,24 +347,125 @@ class T_Platform_Setup {
      * Render settings page
      */
     public function render_settings_page() {
+        // Preveri ce je bila forma poslana
+        if (isset($_POST['t_platform_save_settings']) && check_admin_referer('t_platform_settings_nonce')) {
+            $this->save_settings();
+            echo '<div class="notice notice-success is-dismissible"><p><strong>Nastavitve shranjene!</strong></p></div>';
+        }
+
+        // Pridobi trenutne nastavitve
+        $primary_color = get_option('t_platform_primary_color', '#0073aa');
+        $secondary_color = get_option('t_platform_secondary_color', '#23282d');
+        $accent_color = get_option('t_platform_accent_color', '#00a0d2');
+        $logo_url = get_option('t_platform_logo_url', '');
         ?>
         <div class="wrap">
             <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
             <p><?php _e('Nastavitve T-Platform WooCommerce Theme.', 't-platform-woo-theme'); ?></p>
             <p><?php _e('Verzija:', 't-platform-woo-theme'); ?> <strong><?php echo T_PLATFORM_VERSION; ?></strong></p>
-            
-            <div class="notice notice-info">
-                <p>
-                    <?php _e('Plugin je aktiven in deluje. V prihodnjih verzijah bodo dodane nastavitve za:', 't-platform-woo-theme'); ?>
+
+            <form method="post" action="">
+                <?php wp_nonce_field('t_platform_settings_nonce'); ?>
+
+                <div class="t-platform-tabs">
+                    <h2 class="nav-tab-wrapper">
+                        <a href="#general" class="nav-tab nav-tab-active" data-tab="general"><?php _e('General', 't-platform-woo-theme'); ?></a>
+                        <a href="#homepage" class="nav-tab" data-tab="homepage"><?php _e('Homepage', 't-platform-woo-theme'); ?></a>
+                    </h2>
+
+                    <!-- General Settings Tab -->
+                    <div id="general" class="t-platform-tab-content active">
+                        <h2><?php _e('General Settings', 't-platform-woo-theme'); ?></h2>
+                        <table class="form-table t-platform-form-table">
+                            <tr>
+                                <th><label for="t_platform_primary_color"><?php _e('Primary Color', 't-platform-woo-theme'); ?></label></th>
+                                <td>
+                                    <input type="text" id="t_platform_primary_color" name="t_platform_primary_color" value="<?php echo esc_attr($primary_color); ?>" class="t-platform-color-picker" />
+                                    <p class="description"><?php _e('Glavna barva teme (npr. #0073aa)', 't-platform-woo-theme'); ?></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="t_platform_secondary_color"><?php _e('Secondary Color', 't-platform-woo-theme'); ?></label></th>
+                                <td>
+                                    <input type="text" id="t_platform_secondary_color" name="t_platform_secondary_color" value="<?php echo esc_attr($secondary_color); ?>" class="t-platform-color-picker" />
+                                    <p class="description"><?php _e('Sekundarna barva (npr. #23282d)', 't-platform-woo-theme'); ?></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="t_platform_accent_color"><?php _e('Accent Color', 't-platform-woo-theme'); ?></label></th>
+                                <td>
+                                    <input type="text" id="t_platform_accent_color" name="t_platform_accent_color" value="<?php echo esc_attr($accent_color); ?>" class="t-platform-color-picker" />
+                                    <p class="description"><?php _e('Poudarna barva (npr. #00a0d2)', 't-platform-woo-theme'); ?></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label><?php _e('Logotip', 't-platform-woo-theme'); ?></label></th>
+                                <td>
+                                    <input type="hidden" name="t_platform_logo_url" class="t-platform-logo-url" value="<?php echo esc_attr($logo_url); ?>" />
+                                    <button class="button t-platform-upload-logo"><?php _e('Izberi logotip', 't-platform-woo-theme'); ?></button>
+                                    <div class="t-platform-logo-preview">
+                                        <?php if ($logo_url): ?>
+                                            <img src="<?php echo esc_url($logo_url); ?>" alt="Logo" />
+                                        <?php else: ?>
+                                            <p><?php _e('Logotip ni izbran', 't-platform-woo-theme'); ?></p>
+                                        <?php endif; ?>
+                                    </div>
+                                    <p class="description"><?php _e('Priporočena velikost: 300x100px', 't-platform-woo-theme'); ?></p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- Homepage Settings Tab -->
+                    <div id="homepage" class="t-platform-tab-content">
+                        <h2><?php _e('Homepage Settings', 't-platform-woo-theme'); ?></h2>
+                        <p><?php _e('Homepage nastavitve bodo dodane v naslednji verziji.', 't-platform-woo-theme'); ?></p>
+                    </div>
+                </div>
+
+                <p class="submit">
+                    <input type="submit" name="t_platform_save_settings" class="button-primary t-platform-submit" value="<?php _e('Shrani nastavitve', 't-platform-woo-theme'); ?>" />
                 </p>
-                <ul style="list-style: disc; margin-left: 20px;">
-                    <li><?php _e('Barve in stil', 't-platform-woo-theme'); ?></li>
-                    <li><?php _e('Logotip', 't-platform-woo-theme'); ?></li>
-                    <li><?php _e('Layout', 't-platform-woo-theme'); ?></li>
-                    <li><?php _e('Header/Footer', 't-platform-woo-theme'); ?></li>
-                </ul>
-            </div>
+            </form>
         </div>
         <?php
+    }
+
+    /**
+     * Save settings
+     */
+    public function save_settings() {
+        // Save primary color
+        if (isset($_POST['t_platform_primary_color'])) {
+            update_option('t_platform_primary_color', sanitize_hex_color($_POST['t_platform_primary_color']));
+        }
+
+        // Save secondary color
+        if (isset($_POST['t_platform_secondary_color'])) {
+            update_option('t_platform_secondary_color', sanitize_hex_color($_POST['t_platform_secondary_color']));
+        }
+
+        // Save accent color
+        if (isset($_POST['t_platform_accent_color'])) {
+            update_option('t_platform_accent_color', sanitize_hex_color($_POST['t_platform_accent_color']));
+        }
+
+        // Save logo URL
+        if (isset($_POST['t_platform_logo_url'])) {
+            update_option('t_platform_logo_url', esc_url_raw($_POST['t_platform_logo_url']));
+        }
+    }
+
+    /**
+     * Declare WooCommerce compatibility with HPOS and other features
+     */
+    public function declare_woocommerce_compatibility() {
+        if (class_exists('\Automattic\WooCommerce\Utilities\FeaturesUtil')) {
+            // Declare compatibility with custom order tables (HPOS)
+            \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('custom_order_tables', T_PLATFORM_PLUGIN_BASENAME, true);
+            
+            // Declare compatibility with new product editor
+            \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('product_block_editor', T_PLATFORM_PLUGIN_BASENAME, true);
+        }
     }
 }
