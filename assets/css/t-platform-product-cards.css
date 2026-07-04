@@ -1,0 +1,248 @@
+/**
+ * T-Platform Product Cards Styles
+ * Foxway-style product cards with specifications
+ *
+ * @package T_Platform_WooCommerce_Theme
+ * @since 0.1.0
+ */
+
+/* Product Card */
+.t-platform-product-card {
+    background-color: var(--t-platform-white);
+    border: 1px solid var(--t-platform-border);
+    border-radius: var(--t-platform-radius-md);
+    overflow: hidden;
+    transition: var(--t-platform-transition);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.t-platform-product-card:hover {
+    box-shadow: var(--t-platform-shadow-lg);
+    transform: translateY(-4px);
+}
+
+/* Product Image */
+.t-platform-product-image {
+    position: relative;
+    width: 100%;
+    padding-top: 75%; /* 4:3 aspect ratio */
+    background-color: var(--t-platform-background);
+    overflow: hidden;
+}
+
+.t-platform-product-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: var(--t-platform-spacing-md);
+    transition: var(--t-platform-transition);
+}
+
+.t-platform-product-card:hover .t-platform-product-image img {
+    transform: scale(1.05);
+}
+
+/* Quality Badge */
+.t-platform-quality-badge {
+    position: absolute;
+    top: var(--t-platform-spacing-sm);
+    left: var(--t-platform-spacing-sm);
+    padding: var(--t-platform-spacing-xs) var(--t-platform-spacing-sm);
+    font-size: var(--t-platform-font-size-sm);
+    font-weight: 600;
+    color: var(--t-platform-white);
+    border-radius: var(--t-platform-radius-sm);
+    z-index: 10;
+}
+
+.t-platform-quality-badge.teqcycle-pro {
+    background-color: var(--t-platform-grade-teqcycle);
+}
+
+.t-platform-quality-badge.hp-certified {
+    background-color: var(--t-platform-grade-hp);
+}
+
+.t-platform-quality-badge.new-retail {
+    background-color: var(--t-platform-grade-new);
+}
+
+.t-platform-quality-badge.refurbished-a {
+    background-color: var(--t-platform-grade-refurbished-a);
+}
+
+.t-platform-quality-badge.refurbished-b {
+    background-color: var(--t-platform-grade-refurbished-b);
+}
+
+/* Stock Indicator */
+.t-platform-stock-indicator {
+    position: absolute;
+    top: var(--t-platform-spacing-sm);
+    right: var(--t-platform-spacing-sm);
+    padding: var(--t-platform-spacing-xs) var(--t-platform-spacing-sm);
+    font-size: var(--t-platform-font-size-sm);
+    font-weight: 600;
+    background-color: var(--t-platform-white);
+    border-radius: var(--t-platform-radius-sm);
+    box-shadow: var(--t-platform-shadow-sm);
+}
+
+.t-platform-stock-indicator.in-stock {
+    color: var(--t-platform-grade-teqcycle);
+}
+
+.t-platform-stock-indicator.low-stock {
+    color: var(--t-platform-accent);
+}
+
+.t-platform-stock-indicator.out-of-stock {
+    color: #dc3545;
+}
+
+/* Product Info */
+.t-platform-product-info {
+    padding: var(--t-platform-spacing-md);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.t-platform-product-title {
+    font-size: var(--t-platform-font-size-base);
+    font-weight: 600;
+    margin-bottom: var(--t-platform-spacing-sm);
+    line-height: 1.4;
+}
+
+.t-platform-product-title a {
+    color: var(--t-platform-text);
+    text-decoration: none;
+}
+
+.t-platform-product-title a:hover {
+    color: var(--t-platform-primary);
+}
+
+/* Product Specifications */
+.t-platform-product-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--t-platform-spacing-xs);
+    margin-bottom: var(--t-platform-spacing-md);
+    font-size: var(--t-platform-font-size-sm);
+}
+
+.t-platform-spec-item {
+    display: flex;
+    align-items: center;
+    gap: var(--t-platform-spacing-xs);
+    color: var(--t-platform-text-light);
+}
+
+.t-platform-spec-icon {
+    font-size: 14px;
+    color: var(--t-platform-text-muted);
+}
+
+.t-platform-spec-value {
+    font-weight: 500;
+    color: var(--t-platform-text);
+}
+
+/* Product Price */
+.t-platform-product-price {
+    margin-top: auto;
+    padding-top: var(--t-platform-spacing-sm);
+    border-top: 1px solid var(--t-platform-border);
+}
+
+.t-platform-price {
+    font-size: var(--t-platform-font-size-xl);
+    font-weight: 700;
+    color: var(--t-platform-primary);
+}
+
+.t-platform-price-old {
+    font-size: var(--t-platform-font-size-sm);
+    color: var(--t-platform-text-muted);
+    text-decoration: line-through;
+    margin-left: var(--t-platform-spacing-sm);
+}
+
+.t-platform-price-login {
+    font-size: var(--t-platform-font-size-base);
+    color: var(--t-platform-text-light);
+    font-style: italic;
+}
+
+/* Product Actions */
+.t-platform-product-actions {
+    display: flex;
+    gap: var(--t-platform-spacing-sm);
+    margin-top: var(--t-platform-spacing-md);
+}
+
+.t-platform-add-to-cart {
+    flex: 1;
+    padding: var(--t-platform-spacing-sm);
+    background-color: var(--t-platform-primary);
+    color: var(--t-platform-white);
+    border: none;
+    border-radius: var(--t-platform-radius-sm);
+    font-size: var(--t-platform-font-size-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--t-platform-transition);
+}
+
+.t-platform-add-to-cart:hover {
+    background-color: var(--t-platform-primary-dark);
+}
+
+.t-platform-add-to-cart:disabled {
+    background-color: var(--t-platform-text-muted);
+    cursor: not-allowed;
+}
+
+.t-platform-quick-view {
+    padding: var(--t-platform-spacing-sm);
+    background-color: var(--t-platform-background);
+    color: var(--t-platform-text);
+    border: none;
+    border-radius: var(--t-platform-radius-sm);
+    cursor: pointer;
+    transition: var(--t-platform-transition);
+}
+
+.t-platform-quick-view:hover {
+    background-color: var(--t-platform-border);
+}
+
+/* Product Grid */
+.t-platform-product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--t-platform-spacing-lg);
+    margin-top: var(--t-platform-spacing-lg);
+}
+
+/* Warranty Badge */
+.t-platform-warranty {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--t-platform-spacing-xs);
+    font-size: var(--t-platform-font-size-sm);
+    color: var(--t-platform-text-light);
+    margin-top: var(--t-platform-spacing-xs);
+}
+
+.t-platform-warranty-icon {
+    color: var(--t-platform-grade-teqcycle);
+}
