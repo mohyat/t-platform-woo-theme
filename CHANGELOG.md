@@ -2,6 +2,16 @@
 
 Vse pomembne spremembe v T-Platform WooCommerce Theme bodo dokumentirane v tej datoteki.
 
+## [0.2.1] - 2026-07-04
+
+### Spremenjeno
+- Odstranjene nepotrebne metode za template override (ne delujejo na Block Theme)
+- Odstranjen templates/woocommerce direktorij
+- Očiščen init_hooks() od neuporabnih filtrov
+- Priprava za custom WordPress temo
+
+---
+
 ## [0.2.0] - 2026-07-04
 
 ### Dodano

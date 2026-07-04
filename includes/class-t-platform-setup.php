@@ -58,7 +58,6 @@ class T_Platform_Setup {
         // Admin menu
         // WooCommerce HPOS compatibility
         add_action('before_woocommerce_init', array($this, 'declare_woocommerce_compatibility'));
-        add_action('admin_menu', array($this, 'add_admin_menu'));
     }
     
     /**
@@ -468,4 +467,5 @@ class T_Platform_Setup {
             \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('product_block_editor', T_PLATFORM_PLUGIN_BASENAME, true);
         }
     }
+
 }
