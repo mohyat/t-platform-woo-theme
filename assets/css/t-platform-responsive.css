@@ -1,0 +1,88 @@
+/**
+ * T-Platform Responsive Styles
+ * Mobile-first responsive design
+ *
+ * @package T_Platform_WooCommerce_Theme
+ * @since 0.1.0
+ */
+
+/* Mobile (< 768px) */
+@media (max-width: 767px) {
+    :root {
+        --t-platform-font-size-base: 14px;
+        --t-platform-font-size-lg: 16px;
+        --t-platform-font-size-xl: 20px;
+        --t-platform-font-size-xxl: 24px;
+    }
+    
+    /* Header */
+    .t-platform-header-inner {
+        flex-direction: column;
+        gap: var(--t-platform-spacing-md);
+    }
+    
+    .t-platform-search {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    /* Product Grid */
+    .t-platform-product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: var(--t-platform-spacing-md);
+    }
+    
+    /* Product Card */
+    .t-platform-product-specs {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Footer */
+    .t-platform-footer-widgets {
+        grid-template-columns: 1fr;
+        gap: var(--t-platform-spacing-lg);
+    }
+}
+
+/* Tablet (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    /* Product Grid */
+    .t-platform-product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+}
+
+/* Desktop (> 1024px) */
+@media (min-width: 1025px) {
+    /* Product Grid */
+    .t-platform-product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
+
+/* Large Desktop (> 1400px) */
+@media (min-width: 1400px) {
+    .t-platform-container {
+        max-width: 1600px;
+    }
+    
+    /* Product Grid */
+    .t-platform-product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+/* Print Styles */
+@media print {
+    .t-platform-header,
+    .t-platform-footer,
+    .t-platform-product-actions {
+        display: none !important;
+    }
+    
+    .t-platform-product-card {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+    }
+}
